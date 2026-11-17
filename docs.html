@@ -1,4 +1,224 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10110f"><meta name="description" content="VEX documentation is being prepared and will be updated as the language develops."><title>Documentation — VEX</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head>
-<body><header class="site-header"><a class="brand" href="index.html">VEX<span>®</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><i></i><i></i></button><nav id="primary-nav" class="primary-nav"><a href="index.html">Home</a><a href="about.html">About</a><a class="active" href="docs.html">Documentation</a><a class="nav-cta" href="https://github.com/Atiqxyz/vex" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
-<main><section class="docs-hero"><p class="mono accent-text">VEX / DOCUMENTATION</p><h1>Knowledge<br>in <em>progress.</em></h1><p class="docs-lede">The documentation is not complete yet.</p><div class="docs-panel"><span class="docs-icon">↗</span><div><p class="mono accent-text">A NOTE ON DOCUMENTATION</p><h2>This section will grow with VEX.</h2><p>Documentation for VEX will be added and updated in the future as the language, its implementation, and its conventions continue to develop. We do not want to present incomplete material as a finished reference.</p><a class="arrow-link" href="https://github.com/Atiqxyz/vex" target="_blank" rel="noopener">Explore the source repository <span>↗</span></a></div></div><a class="back-link" href="index.html">← Return to the homepage</a></section></main><footer class="footer"><a class="brand" href="index.html">VEX<span>®</span></a><p class="mono">AN INDEPENDENT PROGRAMMING LANGUAGE PROJECT</p><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="docs.html">Documentation</a><a href="https://github.com/Atiqxyz/vex" target="_blank" rel="noopener">GitHub ↗</a></nav><small>© <span id="year">2026</span> VEX PROJECT</small></footer><script src="script.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="The VEX programming language documentation: guides, language concepts, memory model, compiler information, and current implementation status.">
+  <title>VEX Documentation — Language Guide & Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="docs-page">
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="VEX home">VEX<span>®</span></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><i></i><i></i></button>
+  <nav id="primary-nav" class="primary-nav">
+    <a href="index.html">Home</a><a href="about.html">About</a><a class="active" href="docs.html">Documentation</a>
+    <a class="nav-cta" href="https://github.com/Atiqxyz/vex" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="docs-topbar">
+  <div class="docs-breadcrumb"><a href="index.html">VEX</a><span>/</span><strong>Documentation</strong></div>
+  <label class="docs-search"><span aria-hidden="true">⌕</span><input id="docs-search" type="search" placeholder="Search documentation..." autocomplete="off" aria-label="Search documentation"><kbd> / </kbd></label>
+  <button class="docs-mobile-toggle" id="docs-mobile-toggle" aria-expanded="false" aria-controls="docs-sidebar">Browse topics <span>☰</span></button>
+</div>
+
+<main class="docs-layout">
+  <aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentation navigation">
+    <div class="sidebar-heading mono">VEX DOCUMENTATION</div>
+    <details class="docs-nav-group" open>
+      <summary>Start here</summary>
+      <a class="docs-nav-link active" href="#overview">Documentation overview</a>
+      <a class="docs-nav-link" href="#quick-start">A first VEX program</a>
+      <a class="docs-nav-link" href="#installation">Installation</a>
+    </details>
+    <details class="docs-nav-group" open>
+      <summary>Language guide</summary>
+      <a class="docs-nav-link" href="#program-structure">Program structure</a>
+      <a class="docs-nav-link" href="#types">Types and bindings</a>
+      <a class="docs-nav-link" href="#functions">Functions</a>
+      <a class="docs-nav-link" href="#structures">Structures</a>
+      <a class="docs-nav-link" href="#enums">Enums and matching</a>
+      <a class="docs-nav-link" href="#arrays">Arrays and collections</a>
+      <a class="docs-nav-link" href="#control-flow">Control flow</a>
+      <a class="docs-nav-link" href="#pointers">Pointers and memory</a>
+    </details>
+    <details class="docs-nav-group" open>
+      <summary>Reference</summary>
+      <a class="docs-nav-link" href="#standard-library">Standard library</a>
+      <a class="docs-nav-link" href="#diagnostics">Errors and diagnostics</a>
+      <a class="docs-nav-link" href="#compiler">Compiler and backends</a>
+      <a class="docs-nav-link" href="#status">Implementation status</a>
+    </details>
+    <div class="sidebar-bottom">
+      <span class="mono">LANGUAGE STATUS</span>
+      <p>Experimental · 0.x</p>
+      <a href="https://github.com/Atiqxyz/vex/tree/dev/docs" target="_blank" rel="noopener">Compiler design notes ↗</a>
+    </div>
+  </aside>
+
+  <article class="docs-article" id="docs-article">
+    <div class="article-kicker mono">VEX / DOCUMENTATION / OVERVIEW</div>
+    <div class="article-heading-row"><div><h1 id="overview">VEX documentation</h1><p class="article-lede">Guides and reference material for the VEX programming language.</p></div><span class="version-chip">WORKING DRAFT · 0.x</span></div>
+    <div class="doc-notice"><span class="notice-mark" aria-hidden="true">i</span><p><strong>VEX is experimental.</strong> The compiler and language are actively evolving. This documentation describes verified behavior where available and labels unfinished areas instead of presenting plans as implemented features.</p></div>
+
+    <section class="doc-section" id="quick-start">
+      <h2>A first VEX program</h2>
+      <p>VEX uses <code>make</code> to declare functions. A program can define <code>main</code> as its entry point and use <code>say</code> to write a supported primitive value to standard output.</p>
+      <div class="code-window"><div class="code-window-bar"><span>hello.vex</span><button class="copy-code" type="button" data-copy="hello-code">Copy</button></div><pre id="hello-code"><code>make main() {
+    let message = "Hello, VEX!"
+    say(message)
+}</code></pre></div>
+      <p>Newlines separate statements. Curly braces delimit blocks; indentation is for readability and does not determine program structure.</p>
+    </section>
+
+    <section class="doc-section" id="installation">
+      <h2>Installation</h2>
+      <p>Compiler installation and platform-specific build instructions are maintained in the VEX source repository. Use the installation guide that matches the current compiler revision rather than relying on an outdated binary or command.</p>
+      <div class="doc-link-card"><div><strong>Compiler installation guide</strong><p>Build requirements, toolchain setup, and platform notes.</p></div><a href="https://github.com/Atiqxyz/vex/blob/dev/docs/installation.md" target="_blank" rel="noopener">Open guide ↗</a></div>
+    </section>
+
+    <section class="doc-section" id="program-structure">
+      <h2>Program structure</h2>
+      <p>Functions and type declarations are defined at file scope. Function signatures are collected before function bodies are checked, so a function can call another function declared later in the same source file.</p>
+      <ul><li>Use <code>make name(...)</code> to declare a function.</li><li>Use <code>struct</code> and <code>enum</code> for nominal user-defined types.</li><li>When <code>make main()</code> exists, it is the program entry point and top-level executable statements are rejected.</li><li>Without <code>main</code>, top-level statements execute in source order through a compiler-generated entry function.</li></ul>
+      <p>VEX currently compiles a single source compilation unit. Module resolution and multi-file compilation are not yet implemented.</p>
+    </section>
+
+    <section class="doc-section" id="types">
+      <h2>Types and bindings</h2>
+      <p>VEX is statically typed. Local bindings can use inferred types when the compiler can determine the initializer's type. Function parameters require explicit type annotations.</p>
+      <div class="code-window"><div class="code-window-bar"><span>bindings.vex</span><button class="copy-code" type="button" data-copy="bindings-code">Copy</button></div><pre id="bindings-code"><code>let count: int = 12
+const gravity: float = 9.81
+let enabled = true
+let label = "simulation"</code></pre></div>
+      <p><code>let</code> introduces a mutable binding; <code>const</code> introduces an immutable binding. Mutable, explicitly typed scalar bindings may omit an initializer and receive defined defaults: zero for <code>int</code> and <code>byte</code>, <code>0.0</code> for <code>float</code>, <code>false</code> for <code>bool</code>, and the empty string for <code>string</code>. Inferred and constant bindings require initializers.</p>
+      <p>The current primitive set includes <code>int</code>, <code>byte</code>, <code>float</code>, <code>bool</code>, <code>string</code>, and <code>void</code> in their supported contexts. This is not a promise of fixed cross-platform integer width for every type.</p>
+    </section>
+
+    <section class="doc-section" id="functions">
+      <h2>Functions</h2>
+      <p>Function parameters are explicitly typed. A function without a return annotation returns <code>void</code>; a function that returns a value declares its return type with <code>-&gt;</code>.</p>
+      <div class="code-window"><div class="code-window-bar"><span>functions.vex</span><button class="copy-code" type="button" data-copy="functions-code">Copy</button></div><pre id="functions-code"><code>make calculate_force(mass: float, acceleration: float) -> float {
+    return mass * acceleration
+}</code></pre></div>
+      <p>Function overloading is not implemented. The compiler supports forward calls and recursive calls within the current compilation unit.</p>
+    </section>
+
+    <section class="doc-section" id="structures">
+      <h2>Structures</h2>
+      <p>A <code>struct</code> declares a named value type with fields. Structure literals use named fields, and each declared field must be initialized exactly once.</p>
+      <div class="code-window"><div class="code-window-bar"><span>structures.vex</span><button class="copy-code" type="button" data-copy="structures-code">Copy</button></div><pre id="structures-code"><code>struct Point {
+    x: float,
+    y: float,
+}
+
+make main() {
+    let point = Point { x: 1.0, y: 2.0 }
+    point.x = 4.0
+    say(point.x)
+}</code></pre></div>
+      <p>Structures have value semantics: assignment, parameter passing, and return copy the structure value. Dynamic-array fields retain their shared reference when the containing structure is copied. Field layout follows the target ABI and may include padding; it is not a stable cross-platform serialization format.</p>
+      <p>Arrays of structures and nested field access are supported in the current implementation. Direct recursive by-value fields are rejected.</p>
+    </section>
+
+    <section class="doc-section" id="enums">
+      <h2>Enums and matching</h2>
+      <p>Enums are nominal tagged unions. Each declaration defines a distinct type with a closed set of variants. Variants may carry zero or more positional payload values.</p>
+      <div class="code-window"><div class="code-window-bar"><span>results.vex</span><button class="copy-code" type="button" data-copy="enums-code">Copy</button></div><pre id="enums-code"><code>enum SolverResult {
+    Converged(int, float),
+    Diverged(string),
+    Cancelled
+}</code></pre></div>
+      <p>Variants are constructed with qualified names. The current <code>match</code> statement requires every declared variant to be handled exactly once. Enum values do not implicitly convert to integers.</p>
+    </section>
+
+    <section class="doc-section" id="arrays">
+      <h2>Arrays and collections</h2>
+      <p>VEX supports fixed-size arrays and dynamic arrays. Fixed arrays store elements by value; dynamic arrays use runtime-managed references to contiguous elements. Copies of a dynamic array share the referenced collection.</p>
+      <p>Current implementation includes indexing, iteration, nested dynamic and mixed fixed/dynamic jagged arrays, and collection operations. Nested aggregate storage is subject to target-aware limits. Borrowed slices and a complete ownership model are not available.</p>
+      <div class="doc-link-card"><div><strong>Array and collection design</strong><p>Detailed implementation notes and current constraints.</p></div><a href="https://github.com/Atiqxyz/vex/blob/dev/docs/language-completeness-matrix.md" target="_blank" rel="noopener">View status matrix ↗</a></div>
+    </section>
+
+    <section class="doc-section" id="control-flow">
+      <h2>Control flow</h2>
+      <p>The implemented control-flow constructs include <code>if</code>/<code>else</code>, <code>while</code>, counted <code>repeat</code>, <code>for-in</code> over arrays and integer ranges, and <code>break</code>/<code>continue</code> for the innermost enclosing loop.</p>
+      <p>Conditions require boolean values. Integer range iteration supports exclusive and inclusive forms. Labeled loop control, exceptions, async operations, and generators are not implemented.</p>
+    </section>
+
+    <section class="doc-section" id="pointers">
+      <h2>Pointers and memory</h2>
+      <p>The current pointer subset supports single-level typed pointers to mutable primitive, structure, and enum locals or parameters. Address-of, dereference reads and writes, compound stores, and projected field or array access are supported. Pointer parameters and directly returned borrowed pointers from a matching parameter are also supported.</p>
+      <div class="doc-notice subtle"><span class="notice-mark" aria-hidden="true">!</span><p>This is not yet a complete systems-language memory model. Pointer-to-pointer types, null pointer values, pointer arithmetic, integer/pointer conversions, explicit unsafe boundaries, and complete lifetime, provenance, and aliasing rules remain unfinished. Returning a pointer to local storage is rejected.</p></div>
+      <p>Dynamic arrays and compiler-managed string allocations are released at normal generated-entry return. This is not per-scope deallocation, and the language does not yet expose a general allocator/deallocator API.</p>
+    </section>
+
+    <section class="doc-section" id="standard-library">
+      <h2>Standard library</h2>
+      <p>The built-in API reference is being audited against semantic checking, lowering, both backends, runtime behavior, and tests. A function name alone is not a complete contract: each entry must document accepted argument types and shapes, arity, return values, side effects, failure cases, and backend guarantees.</p>
+      <p>Until that audit is complete, do not treat this page as an exhaustive standard-library signature list. Existing implementation notes are available in the source repository.</p>
+      <div class="doc-link-card"><div><strong>Standard-library implementation notes</strong><p>Current inventory and audit notes from the compiler project.</p></div><a href="https://github.com/Atiqxyz/vex/blob/dev/docs/standard-library.md" target="_blank" rel="noopener">Open reference notes ↗</a></div>
+    </section>
+
+    <section class="doc-section" id="diagnostics">
+      <h2>Errors and diagnostics</h2>
+      <p>The compiler reports lexical, parsing, semantic, and intermediate-representation verification errors with source locations. Checked integer arithmetic and array indexing can fail at runtime rather than silently proceeding with invalid results.</p>
+      <p>A complete public catalogue of diagnostic codes, triggering conditions, and fixes is still being assembled. Recoverable error values and general exception handling are not implemented.</p>
+    </section>
+
+    <section class="doc-section" id="compiler">
+      <h2>Compiler and backends</h2>
+      <p>The initial compiler is implemented in C++20. Its pipeline includes source processing, semantic analysis, typed SSA intermediate representation, and backend code generation. The IR is designed to be backend-independent.</p>
+      <p>The project currently has C11 and LLVM code-generation backends. LLVM is the default native build path; C is retained as an optional bootstrap and fallback backend. Neither backend defines VEX language semantics.</p>
+    </section>
+
+    <section class="doc-section" id="status">
+      <h2>Implementation status</h2>
+      <p>VEX is an experimental language under active development. Some core language features are implemented and tested across both backends, while major areas of the language and runtime remain incomplete.</p>
+      <div class="status-grid">
+        <div><span class="status-dot implemented"></span><strong>Implemented</strong><p>Behavior exists in the compiler and is covered by tests.</p></div>
+        <div><span class="status-dot partial"></span><strong>Partial</strong><p>A limited subset exists; important rules or cases remain open.</p></div>
+        <div><span class="status-dot planned"></span><strong>Not implemented</strong><p>A future capability or design area, not a current guarantee.</p></div>
+      </div>
+      <p>For the detailed, changing feature inventory, consult the live completeness matrix on the development branch.</p>
+      <div class="doc-link-card"><div><strong>Language completeness matrix</strong><p>Feature-by-feature implementation status and outstanding questions.</p></div><a href="https://github.com/Atiqxyz/vex/blob/dev/docs/language-completeness-matrix.md" target="_blank" rel="noopener">Open matrix ↗</a></div>
+    </section>
+
+    <div class="article-end">
+      <div><span class="mono">DOCUMENTATION NOTE</span><p>Reference pages are expanded as behavior is verified. Design goals are kept separate from implemented guarantees.</p></div>
+      <a href="https://github.com/Atiqxyz/vex" target="_blank" rel="noopener">View VEX source ↗</a>
+    </div>
+  </article>
+
+  <aside class="docs-toc" aria-label="On this page">
+    <p class="mono">ON THIS PAGE</p>
+    <a href="#overview" class="toc-link active">Overview</a>
+    <a href="#quick-start" class="toc-link">A first program</a>
+    <a href="#program-structure" class="toc-link">Program structure</a>
+    <a href="#types" class="toc-link">Types and bindings</a>
+    <a href="#functions" class="toc-link">Functions</a>
+    <a href="#structures" class="toc-link">Structures</a>
+    <a href="#enums" class="toc-link">Enums</a>
+    <a href="#arrays" class="toc-link">Arrays</a>
+    <a href="#control-flow" class="toc-link">Control flow</a>
+    <a href="#pointers" class="toc-link">Pointers</a>
+    <a href="#standard-library" class="toc-link">Standard library</a>
+    <a href="#diagnostics" class="toc-link">Diagnostics</a>
+    <a href="#compiler" class="toc-link">Compiler</a>
+    <a href="#status" class="toc-link">Status</a>
+  </aside>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="index.html">VEX<span>®</span></a>
+  <p class="mono">AN INDEPENDENT PROGRAMMING LANGUAGE PROJECT</p>
+  <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="docs.html">Documentation</a><a href="https://github.com/Atiqxyz/vex" target="_blank" rel="noopener">GitHub ↗</a></nav>
+  <small>© <span id="year">2026</span> VEX PROJECT</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
