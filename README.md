@@ -6,13 +6,15 @@ The official VEX website, built as a lightweight multi-page static site.
 
 - `index.html` — homepage introducing VEX and its central ambition
 - `about.html` — philosophy, long-term direction, development status, and creators
-- `docs.html` — searchable programming-language documentation portal with topic navigation, language guides, examples, and implementation-status notes
+- `docs.html` — interactive programming-language reference with topic replacement, search, practical examples, and in-page section links
 
-## Documentation
+## Documentation portal
 
-The documentation portal uses the site's existing charcoal, off-white, and lime visual identity. Documentation prose and code remain neutral for readability. The portal includes responsive topic navigation, on-page contents, searchable sections, and copyable code examples.
+The documentation page is organized like a language reference: topics are grouped in a left navigation, the selected article replaces the central content in place, and a right rail summarizes the topic and links to source documents. Search filters the available topics. Code examples have copy controls.
 
-Language behavior is documented against the VEX compiler project. Experimental and incomplete areas are labelled rather than presented as implemented guarantees. The detailed implementation matrix and compiler design notes remain in the [VEX source repository](https://github.com/Atiqxyz/vex/tree/dev/docs).
+The visual identity reuses the site's charcoal, off-white, and lime palette. Documentation text and code remain neutral for readability; accent color is restricted to interface details.
+
+Reference content is derived from the VEX `dev` branch specification, standard-library notes, installation guide, compiler semantic checks, and language completeness matrix. Experimental or incomplete behavior is labelled rather than presented as a guarantee. The detailed diagnostic catalogue and further function edge-case audit remain ongoing documentation work.
 
 ## Preview locally
 
@@ -26,7 +28,9 @@ Then visit http://localhost:8000.
 
 ## Shared assets
 
-- `styles.css` — responsive visual identity and layouts
-- `script.js` — mobile navigation, documentation search, code-copy controls, and dynamic footer year
+- `styles.css` — responsive visual identity and page layouts
+- `script.js` — mobile global navigation and dynamic footer year
+- `docs-content-*.js` — topic reference content
+- `docs-app.js` — topic switching, search, table of contents, and code-copy behavior
 
 The site uses plain HTML, CSS, and JavaScript. No framework or build step is required.
